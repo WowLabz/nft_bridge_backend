@@ -82,15 +82,6 @@ export async function getToken(collectionId: number | string, tokenId: number | 
     logger.info(`owner: ${JSON.stringify(owner)}`);
     const token = <PolkadotNft>tokenHuman;
     logger.info(token.owner.AccountId);
-    // logger.info(tokenHuman.owner.accountId);
-    // const token: PolkadotNft = {
-    //     owner: {
-    //         accountId: tokenHuman.owner.accountId
-    //     },
-    //     metadata: tokenHuman.metadata,
-    //     nftName: tokenHuman.nftName,
-    //     description: tokenHuman.description,
-    // };
     return token;
 }
 
