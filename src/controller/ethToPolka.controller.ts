@@ -21,7 +21,6 @@ export async function ethToPolkaHander(req: Request<{}, {}, EthToPolkaInput['bod
         }
     
         if(success){
-            const tokenName = await getTokenName(contractAddress);
             const tokenUri = await getTokenUri(contractAddress, tokenId);
             const nftInDatabase = await getNftFromDatabase(tokenUri);
             logger.info('trying to find nft in database result = ',JSON.stringify(nftInDatabase));
@@ -52,7 +51,7 @@ export async function ethToPolkaHander(req: Request<{}, {}, EthToPolkaInput['bod
                         return res.sendStatus(200);
                     }
                     logger.info('minting nft in polkadot');
-                    await mintNft(tokenName, tokenUri, receiver, onFailHandler, onSuccessHandler);
+                    await mintNft(tokenUri, receiver, onFailHandler, onSuccessHandler);
                 }
             }else{
                 logger.info('nft not found in database');
@@ -70,7 +69,7 @@ export async function ethToPolkaHander(req: Request<{}, {}, EthToPolkaInput['bod
                     return res.sendStatus(200);
                 }
                 logger.info('minting nft in polkadot');
-                await mintNft(tokenName, tokenUri, receiver, onFailHandler, onSuccessHandler);
+                await mintNft(tokenUri, receiver, onFailHandler, onSuccessHandler);
             }
         }
     }catch(error){

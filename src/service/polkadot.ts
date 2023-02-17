@@ -21,7 +21,7 @@ interface PolkadotNft{
     metadata: string
 }
 
-export async function mintNft(name: string, metadata: string, owner: string, onFail: Function, onSuccess: Function){
+export async function mintNft(metadata: string, owner: string, onFail: Function, onSuccess: Function){
     try{
         const wsProvider = new WsProvider(ADDRESS);
         const api = await ApiPromise.create({provider: wsProvider});
@@ -31,7 +31,7 @@ export async function mintNft(name: string, metadata: string, owner: string, onF
         await api.isReady;
         const keyPair = keyring.addFromUri(SEED);
 
-        const transaction = api.tx.metahomeNft.mintNft(owner, COLLECTION_ID, null, null, metadata, true, name, "Transferred from ethereum");
+        const transaction = api.tx.metahomeNft.mintNft(owner, COLLECTION_ID, null, null, metadata, true);
         await handleSignedTransaction(transaction, keyPair, onFail, onSuccess);
     }catch(error){
         logger.info('Failed to mint nft due to error: ',error);
@@ -43,6 +43,7 @@ export async function transferNft(collectionId: string|number, tokenId: string|n
     try{
         const wsProvider = new WsProvider(ADDRESS);
         const api = await ApiPromise.create({provider: wsProvider});
+        await api.isReady;
         const keyring = new Keyring({type: 'sr25519'});
 
         await api.isReady;
@@ -51,6 +52,7 @@ export async function transferNft(collectionId: string|number, tokenId: string|n
         const newOwner = {
             AccountId: owner
         };
+        logger.info('collection id = ',collectionId,' tokenId = ',tokenId);
         const transaction = api.tx.metahomeNft.send(collectionId, tokenId, newOwner);
         await handleSignedTransaction(transaction, keyPair, onFail, onSuccess);
     }catch(error){

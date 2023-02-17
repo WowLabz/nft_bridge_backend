@@ -26,6 +26,6 @@ export default {
     EVM_PRIVATE_KEY: process.env.EVM_PRIVATE_KEY,
     SUBSTRATE_WSS: 'wss://social_li_n1.wowlabz.com/',
     POLKA_SEED: process.env.POLKA_SEED,
-    COLLECTION_ID: 1,
+    COLLECTION_ID: 2,
     dbUri: "mongodb://localhost:27017/bridge"
 }
