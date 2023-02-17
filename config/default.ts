@@ -27,5 +27,5 @@ export default {
     SUBSTRATE_WSS: 'wss://social_li_n1.wowlabz.com/',
     POLKA_SEED: process.env.POLKA_SEED,
     COLLECTION_ID: 1,
-    dbUri: "mongodb://localhost:27017/bridge"
+    dbUri: "mongodb://nftbridge_admin:nftbridge_pwd@nftbridge-mongo/nftbridge-backend"
 }

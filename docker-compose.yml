@@ -23,6 +23,6 @@ services:
         depends_on:
             - nftbridge-mongo
         environment:
-            - MONGO_URI=mongodb://nftbridge_admin:nftbridge_pwd@nftbridge-mongo/nftbridge-backend
+            - dbUri=mongodb://nftbridge_admin:nftbridge_pwd@nftbridge-mongo/nftbridge-backend
             - NODE_ENV=staging
         restart: always
