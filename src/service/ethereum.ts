@@ -17,6 +17,7 @@ const ethNftContractAddress = config.get<string>("ETH_NFT_CONTRACT_ADDRESS");
 
 export async function transferNftToSelf(contractAddress: string, tokenId: number | string): Promise<boolean> {
     logger.info("transfer nft to self called! with values contractAddress: ",contractAddress," and token id : ",tokenId);
+     console.log("transfer nft to self called! with values contractAddress: ",contractAddress," and token id : ",tokenId);
     const provider = new Provider(privateKey,ethereumProvider);
     const web3 = new Web3(<any>provider);
     const address = config.get<string>("EVM_ADDRESS");
@@ -54,6 +55,7 @@ export async function transferNftToSelf(contractAddress: string, tokenId: number
     }catch(error){
         logger.error("failed to transfer the nft");
         logger.error('error: ',error);
+        console.log('error : ',error);
         return false;
     }
 

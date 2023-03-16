@@ -71,6 +71,8 @@ export async function ethToPolkaHander(req: Request<{}, {}, EthToPolkaInput['bod
                 logger.info('minting nft in polkadot');
                 await mintNft(tokenUri, receiver, onFailHandler, onSuccessHandler);
             }
+        }else{
+            res.sendStatus(400)
         }
     }catch(error){
         logger.error(error);
